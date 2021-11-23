@@ -93,7 +93,8 @@ class Game
                     puts "\nNot a good input"
                 end    
                 
-                self.print_grid
+                print_grid
+
                 if @spot1 == current_player.token && @spot2 == current_player.token && @spot3 == current_player.token
                     puts "#{current_player.name} won!"
                     break
@@ -153,10 +154,10 @@ class Game
     end
 
     def play(current_player, next_player)
-        self.spots
-        self.print_grid
+        spots
+        print_grid
         puts "Type 'Q' at any time to quit."
-        self.player_input(current_player, next_player)
+        player_input(current_player, next_player)
     end
 
     def win(current_player)
