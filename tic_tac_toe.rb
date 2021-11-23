@@ -2,14 +2,23 @@ class Game
     attr_accessor :spot1, :spot2, :spot3, :spot4, :spot5, :spot6, :spot7, :spot8, :spot9
     attr_accessor :input
 
+    attr_accessor :name, :token
+
     @@turn_counter = 0
     @@winner = false
 
-    def self.input
+    
+
+    def initialize(name, token) 
+        @name = name
+        @token = token
+    end
+
+    def input
         @input = input
     end
     
-    def self.spots
+    def spots
         @spot1 = "1"
         @spot2 = "2"
         @spot3 = "3"
@@ -21,7 +30,7 @@ class Game
         @spot9 = "9" 
     end
 
-    def self.player_input(player1, player2, current_player=player1)
+    def player_input(player1, player2, current_player=player1)
 
         loop do 
 
@@ -133,7 +142,7 @@ class Game
         end
     end
 
-    def self.print_grid
+    def print_grid
         puts ""
         puts "  #{@spot1} | #{@spot2} | #{@spot3} "
         puts " ---|---|--- "
@@ -143,31 +152,21 @@ class Game
         puts ""
     end
 
-    def self.play(current_player, next_player)
+    def play(current_player, next_player)
         self.spots
         self.print_grid
         puts "Type 'Q' at any time to quit."
         self.player_input(current_player, next_player)
     end
 
-    def self.win(current_player)
+    def win(current_player)
        puts "Hurray! #{@current_player.name} won!" 
     end
 end
 
-class Player < Game
-    attr_accessor :name, :token
 
-    def initialize(name, token) 
-        @name = name
-        @token = token
-    end
 
-    def self.play(current_player, next_player)
-        super
-    end
-end
+player1 = Game.new("Player1", "X")
+player2 = Game.new("Player2", "O")
 
-player1 = Player.new("Player1", "X")
-player2 = Player.new("Player2", "O")
-Player.play(player1, player2)
+player2.play(player1, player2)
